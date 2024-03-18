@@ -3,6 +3,7 @@ import json
 from bs4 import BeautifulSoup
 import urllib.parse
 import pandas as pd
+from jinja2 import Environment, FileSystemLoader
 
 def download() -> None:
     url = "https://www.lycheegold.com.au/melbourne"
@@ -22,13 +23,13 @@ def download() -> None:
     with open("melbourne.json", "w") as f:
         json.dump(sorted_list, f)
 
-    with open("melbourne.txt", "w") as txt_file:
-        for sample in sorted_list:
-            txt_file.write(f'{sample["shop"]}\t{sample["street"]}\t{sample["suburb"]}\n')
-
-
     # Was going to use OSM to get latitude and longitude but their address database is limited and doesn't provide the right
     # co-ordinates for a given address, only for the road4
+    #
+    #   
+    # with open("melbourne.txt", "w") as txt_file:
+    #     for sample in sorted_list:
+    #         txt_file.write(f'{sample["shop"]}\t{sample["street"]}\t{sample["suburb"]}\n')
     #
     # print(getL(f'{sample["street"]}, {sample["suburb"]}'))
 
@@ -40,8 +41,17 @@ def create_table() -> None:
     df = pd.DataFrame(data=d)
     # df.style.set_properties(**{'text-align': 'left'}).set_table_styles([ dict(selector='thead', props=[('text-align', 'left')] ) ])
 
-    with open('melbourne.html', 'w') as f:
-        f.write(df.to_html())
+    with open('locations.html', 'w') as f:
+        f.write(df.to_html(index=False, table_id='myTable'))
+
+def render() -> None:
+    environment = Environment(loader=FileSystemLoader("templates/"))
+    template = environment.get_template("template.html")
+    with open('locations.html') as f:
+        data = f.read()
+        content = template.render(table=data)
+        with open('melbourne.html', 'w') as m:
+            m.write(content)
 
 def getL(address: str) -> dict:
     safe_string = urllib.parse.quote_plus(address)
@@ -54,6 +64,7 @@ def getL(address: str) -> dict:
 def main() -> None:
     # download()
     create_table()
+    render()
 
 if __name__ == '__main__':
     main()
