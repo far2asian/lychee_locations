@@ -5,8 +5,8 @@ import urllib.parse
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader
 
-def download() -> None:
-    url = "https://www.lycheegold.com.au/melbourne"
+def download(city: str) -> None:
+    url = f"https://www.lycheegold.com.au/{city}"
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
     results = soup.find('tbody')
@@ -15,12 +15,13 @@ def download() -> None:
         shop = rows.select('td')[0].get_text(strip=True)
         street = rows.select('td')[1].get_text(strip=True)
         suburb = rows.select('td')[2].get_text(strip=True)
-        postcode = rows.select('td')[3].get_text(strip=True)
-        array.append({ 'shop':shop, 'street':street, 'suburb':suburb, 'postcode': postcode })
+        if len(suburb) == 0:
+            continue
+        array.append({ 'shop':shop, 'street':street, 'suburb':suburb})
 
     sorted_list = sorted(array, key=lambda d:d['suburb'])
 
-    with open("melbourne.json", "w") as f:
+    with open(f"{city}.json", "w") as f:
         json.dump(sorted_list, f)
 
     # Was going to use OSM to get latitude and longitude but their address database is limited and doesn't provide the right
@@ -33,24 +34,23 @@ def download() -> None:
     #
     # print(getL(f'{sample["street"]}, {sample["suburb"]}'))
 
-def create_table() -> None:
+def create_table(city: str) -> None:
     d = {}
-    with open('melbourne.json') as f:
+    with open(f"{city}.json") as f:
         d = json.load(f)
 
     df = pd.DataFrame(data=d)
-    # df.style.set_properties(**{'text-align': 'left'}).set_table_styles([ dict(selector='thead', props=[('text-align', 'left')] ) ])
 
-    with open('locations.html', 'w') as f:
+    with open(f"{city}_locations.html", 'w') as f:
         f.write(df.to_html(index=False, table_id='myTable'))
 
-def render() -> None:
+def render(city: str) -> None:
     environment = Environment(loader=FileSystemLoader("templates/"))
     template = environment.get_template("template.html")
-    with open('locations.html') as f:
+    with open(f"{city}_locations.html") as f:
         data = f.read()
-        content = template.render(table=data)
-        with open('melbourne.html', 'w') as m:
+        content = template.render(table=data, city=city.capitalize())
+        with open(f"{city}.html", 'w') as m:
             m.write(content)
 
 def getL(address: str) -> dict:
@@ -62,9 +62,17 @@ def getL(address: str) -> dict:
     return({"lat":results[0]["lat"], "lon":results[0]["lon"]})
 
 def main() -> None:
-    # download()
-    create_table()
-    render()
+    cities = [
+        "melbourne",
+        "sydney-1",
+        "canberra-and-south-coast",
+        "brisbane",
+        "adelaide"
+    ]
+    for city in cities:
+        download(city)
+        create_table(city)
+        render(city)
 
 if __name__ == '__main__':
     main()
