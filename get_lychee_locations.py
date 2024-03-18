@@ -1,6 +1,8 @@
 import requests
 import json
 from bs4 import BeautifulSoup
+import urllib.parse
+import pandas as pd
 
 def download() -> None:
     url = "https://www.lycheegold.com.au/melbourne"
@@ -10,20 +12,48 @@ def download() -> None:
     array = []
     for rows in results.find_all('tr'):
         shop = rows.select('td')[0].get_text(strip=True)
-        # print(shop)
         street = rows.select('td')[1].get_text(strip=True)
-        # print(street)
         suburb = rows.select('td')[2].get_text(strip=True)
-        # print(suburb)
         postcode = rows.select('td')[3].get_text(strip=True)
-        # print(postcode)
         array.append({ 'shop':shop, 'street':street, 'suburb':suburb, 'postcode': postcode })
 
+    sorted_list = sorted(array, key=lambda d:d['suburb'])
+
     with open("melbourne.json", "w") as f:
-        json.dump(array, f)
+        json.dump(sorted_list, f)
+
+    with open("melbourne.txt", "w") as txt_file:
+        for sample in sorted_list:
+            txt_file.write(f'{sample["shop"]}\t{sample["street"]}\t{sample["suburb"]}\n')
+
+
+    # Was going to use OSM to get latitude and longitude but their address database is limited and doesn't provide the right
+    # co-ordinates for a given address, only for the road4
+    #
+    # print(getL(f'{sample["street"]}, {sample["suburb"]}'))
+
+def create_table() -> None:
+    d = {}
+    with open('melbourne.json') as f:
+        d = json.load(f)
+
+    df = pd.DataFrame(data=d)
+    # df.style.set_properties(**{'text-align': 'left'}).set_table_styles([ dict(selector='thead', props=[('text-align', 'left')] ) ])
+
+    with open('melbourne.html', 'w') as f:
+        f.write(df.to_html())
+
+def getL(address: str) -> dict:
+    safe_string = urllib.parse.quote_plus(address)
+    url = f'https://nominatim.openstreetmap.org/search?q={safe_string}&format=json&polygon=1&addressdetails=1'
+    page = requests.get(url)
+    results = json.loads(page.content)
+
+    return({"lat":results[0]["lat"], "lon":results[0]["lon"]})
 
 def main() -> None:
-    download()
+    # download()
+    create_table()
 
 if __name__ == '__main__':
     main()
