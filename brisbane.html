@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Brisbane</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable({
+        paging: false,
+        order: [[2, 'asc']]
+    });
+} );
+</script>
+<body>
+    <table border="1" class="dataframe" id="myTable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>shop</th>
+      <th>street</th>
+      <th>suburb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bowen Hills Beer Mart</td>
+      <td>5/35 Campbell St</td>
+      <td>BOWEN HILLS</td>
+    </tr>
+    <tr>
+      <td>Cellarbrations Camp Hill</td>
+      <td>39 Samual st</td>
+      <td>CAMP HILL</td>
+    </tr>
+    <tr>
+      <td>Cellarbrations Cannonvale</td>
+      <td>38 Shute Harbour Rd</td>
+      <td>CANNONVALE</td>
+    </tr>
+    <tr>
+      <td>Cellarbrations Fernvale</td>
+      <td>1455 Brisbane Valley Hwy</td>
+      <td>FERNDALE</td>
+    </tr>
+    <tr>
+      <td>Gumdale Tavern Cellarbrations</td>
+      <td>277 Tilly Rd</td>
+      <td>GUMDALE</td>
+    </tr>
+    <tr>
+      <td>Cellarbrations at Manly</td>
+      <td>459 Manly Rd</td>
+      <td>MANLY</td>
+    </tr>
+    <tr>
+      <td>The Mill Cellars</td>
+      <td>Gemvale &amp; Somerset Dr</td>
+      <td>MUDGEERABA</td>
+    </tr>
+    <tr>
+      <td>Cheers AT Northside Cellars</td>
+      <td>2 Pine St</td>
+      <td>NORTH IPSWICH</td>
+    </tr>
+    <tr>
+      <td>Bottlemart Plainland Hotel</td>
+      <td>66 Laidley Plainland Rd</td>
+      <td>PLAINLAND</td>
+    </tr>
+    <tr>
+      <td>Eddy + Wolff</td>
+      <td>44 Commerce Drive</td>
+      <td>ROBINA</td>
+    </tr>
+    <tr>
+      <td>Ferry Road Wine &amp; Beer</td>
+      <td>3/107 Ferry Rd</td>
+      <td>SOUTHPORT</td>
+    </tr>
+    <tr>
+      <td>Star Liquor Shauna Downs</td>
+      <td>3/18 Wynne St</td>
+      <td>SUNNYBANK HILLS</td>
+    </tr>
+    <tr>
+      <td>Capri Wine and Beer</td>
+      <td>15/21 Via Roma</td>
+      <td>SURFERS PARADISE</td>
+    </tr>
+    <tr>
+      <td>Hogan's Wellington Point Hotel</td>
+      <td>381 Main St</td>
+      <td>WELLINGTON POINT</td>
+    </tr>
+    <tr>
+      <td>Waterloo Bay Hotel</td>
+      <td>75 Berrima St</td>
+      <td>WYNNAM</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

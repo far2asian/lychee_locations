@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Sydney-1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable({
+        paging: false,
+        order: [[2, 'asc']]
+    });
+} );
+</script>
+<body>
+    <table border="1" class="dataframe" id="myTable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>shop</th>
+      <th>street</th>
+      <th>suburb</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Liquor Co</td>
+      <td>169 Annangrove Rd</td>
+      <td>ANNANGROVE</td>
+    </tr>
+    <tr>
+      <td>Bottle-0 Asquith</td>
+      <td>397 Pacific Hwy</td>
+      <td>ASQUITH</td>
+    </tr>
+    <tr>
+      <td>IGA Plus Balgowlah Hts</td>
+      <td>113 Beatrice St</td>
+      <td>BALGOWLAH HEIGHTS</td>
+    </tr>
+    <tr>
+      <td>Beverly Hills Cellars</td>
+      <td>487 King Georges Rd</td>
+      <td>BEVERLEY HILLS</td>
+    </tr>
+    <tr>
+      <td>Hen Lee Liquor</td>
+      <td>27-31 Belmore St</td>
+      <td>BURWOOD</td>
+    </tr>
+    <tr>
+      <td>Canley Vale Liquor</td>
+      <td>5 Lansdown Rd</td>
+      <td>CANLEY VALE</td>
+    </tr>
+    <tr>
+      <td>Red Bottle Chippendale</td>
+      <td>28 Broardway</td>
+      <td>CHIPPENDALE</td>
+    </tr>
+    <tr>
+      <td>Coogee Bay Cellars</td>
+      <td>224 Coogee Bay Rd</td>
+      <td>COOGEE</td>
+    </tr>
+    <tr>
+      <td>Dundas Cellars NSW</td>
+      <td>22 Station St</td>
+      <td>DUNDAS</td>
+    </tr>
+    <tr>
+      <td>Winebay Australia</td>
+      <td>25 Redfield Rd</td>
+      <td>EAST KILLARA</td>
+    </tr>
+    <tr>
+      <td>Enmore Fine Wines</td>
+      <td>152 Enmore Rd</td>
+      <td>ENMORE</td>
+    </tr>
+    <tr>
+      <td>Epping Cellars</td>
+      <td>48 Langston Place</td>
+      <td>EPPING</td>
+    </tr>
+    <tr>
+      <td>Top Drop Cellars</td>
+      <td>119 Harboard Rd</td>
+      <td>FRESHWATER</td>
+    </tr>
+    <tr>
+      <td>Broadway Cellars</td>
+      <td>96 Glebe Point Rd</td>
+      <td>GLEBE</td>
+    </tr>
+    <tr>
+      <td>Sydney Cellars</td>
+      <td>227 Broadway</td>
+      <td>GLEBE</td>
+    </tr>
+    <tr>
+      <td>Red Bottle</td>
+      <td>374 Sussex St</td>
+      <td>HAYMARKET</td>
+    </tr>
+    <tr>
+      <td>Wine Haven</td>
+      <td>23-25 Tramore Place</td>
+      <td>KILLARNEY HEIGHTS</td>
+    </tr>
+    <tr>
+      <td>Manly Little Bottler</td>
+      <td>218 Pittwater Rd</td>
+      <td>MANLY</td>
+    </tr>
+    <tr>
+      <td>Ben Buckler Cellars</td>
+      <td>49-53 Campbell Parade</td>
+      <td>NORTH BONDI</td>
+    </tr>
+    <tr>
+      <td>IGA Plus North St Ives</td>
+      <td>351 Mona Vale Rd</td>
+      <td>NORTH ST IVES</td>
+    </tr>
+    <tr>
+      <td>Revesby Bottleshop</td>
+      <td>268 Canterbury Rd</td>
+      <td>REVESBY</td>
+    </tr>
+    <tr>
+      <td>Gan Bei Zetciti Rhodes Central</td>
+      <td>6 Walker St</td>
+      <td>RHODES</td>
+    </tr>
+    <tr>
+      <td>Barny's Fine Wines &amp; Ales</td>
+      <td>741 Botany Rd</td>
+      <td>ROSEBERY</td>
+    </tr>
+    <tr>
+      <td>St Ives IGA</td>
+      <td>351 Mona Vale Rd</td>
+      <td>ST IVES</td>
+    </tr>
+    <tr>
+      <td>Wassail Cellars St Ives Chase</td>
+      <td>160 Warrimoo Ave</td>
+      <td>ST IVES CHASE</td>
+    </tr>
+    <tr>
+      <td>Surry Hills Fine Wines</td>
+      <td>654 Crown St</td>
+      <td>SURRY HILLS</td>
+    </tr>
+    <tr>
+      <td>City Cellars</td>
+      <td>54 Lime St</td>
+      <td>SYDNEY</td>
+    </tr>
+    <tr>
+      <td>The Oak Barrel</td>
+      <td>152 Elizabeth St</td>
+      <td>SYDNEY</td>
+    </tr>
+    <tr>
+      <td>Liquor &amp; Wattle</td>
+      <td>17-19 Macarthur St</td>
+      <td>ULTIMO</td>
+    </tr>
+    <tr>
+      <td>Red Bottle Ultimo</td>
+      <td>66 Bay St</td>
+      <td>ULTIMO</td>
+    </tr>
+    <tr>
+      <td>Shortys Liquor</td>
+      <td>39 Jones St</td>
+      <td>ULTIMO</td>
+    </tr>
+    <tr>
+      <td>IGA Express Warriewood</td>
+      <td>270 Garden St</td>
+      <td>WARRIEWOOD</td>
+    </tr>
+    <tr>
+      <td>Bourke St Wine Shop</td>
+      <td>830-840 Bourke St</td>
+      <td>WATERLOO</td>
+    </tr>
+    <tr>
+      <td>Gan Bei Zetciti</td>
+      <td>5 Footbridge Blvd</td>
+      <td>WENTWORTH POINT</td>
+    </tr>
+    <tr>
+      <td>Gan Bei</td>
+      <td>4 Defries Ave</td>
+      <td>ZETLAND</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
